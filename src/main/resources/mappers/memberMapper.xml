@@ -4,13 +4,46 @@
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
+	<!-- 01. 전체 회원 목록 조회 -->
 	<select id="memberList" resultType="com.example.spring01.member.model.dto.MemberVO">
-		SELECT /*member.memberList*/
+		SELECT /*전체 회원 목록 조회*/
 				USER_ID AS USERID
             , USER_NAME AS USERNAME
             , USER_EMAIL AS USEREMAIL
             , USER_REGDATE AS USERREGDATE
          FROM TBL_MEMBER
          ORDER BY USERNAME 
+	</select>
+	
+	<!-- 02. 회원등록  -->
+	<insert id="insertMember">
+		/*회원 등*/
+		INSERT INTO TBL_MEMBER
+				(
+					USER_ID
+				,	USER_PW
+				,	USER_NAME
+				,	USER_EMAIL
+				) 
+				VALUES
+				(
+					#{userId}
+				,	#{userPw}
+				,	#{userName}
+				,	#{userEmail}
+				)
+								
+	</insert>
+	
+	<!-- 03. 회원정보 상세조회 -->
+	<select id="viewMember" resultType="com.example.spring01.member.model.dto.MemberVO">
+		SELECT /*회원정보 상세조회*/
+				USER_ID AS USERID
+		     , USER_NAME AS USERNAME
+		     , USER_EMAIL AS USEREMAIL
+		     , USER_REGDATE AS USERREGDATE
+		     , USER_UPDATE AS USERUPDATE
+	     FROM TBL_MEMBER
+	    WHERE USER_ID = #{userId}
 	</select>
 </mapper>       

@@ -10,6 +10,7 @@
 <body>
 <%@ include file="../include/member_menu.jsp" %>
 	<h2>회원 목록</h2>
+	<input type="button" value="회원등록" onclick="location.href='${path}/member/write.do'">
 	<table border="1" width="700px">
 		<tr>
 			<th>아이디</th>
@@ -20,7 +21,8 @@
 		<c:forEach var="row" items="${list}">
 		<tr>
 			<td>${row.userId}</td>
-			<td>${row.userName}</td>
+			<!-- 회원정보 상세조회를 위해 a태그 추가 -->
+			<td><a href="${path}/member/view.do?userId=${row.userId}">${row.userName}</a></td>
 			<td>${row.userEmail}</td>
 			<td>${row.userRegdate}</td>
 		</tr>

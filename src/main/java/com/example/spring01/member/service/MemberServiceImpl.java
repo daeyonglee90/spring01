@@ -16,21 +16,23 @@ public class MemberServiceImpl implements MemberService{
 	@Inject
 	MemberDAOImpl memberDao;
 	
+	// 01. 전체 회원 목록 조회
 	@Override
 	public List<MemberVO> memberList() {
 		return memberDao.memberList();
 	}
 
+	// 02. 회원 등록
 	@Override
 	public void insertMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		
+		memberDao.insertMember(vo);
 	}
 
+	// 03. 회원 정보 상세 조회
 	@Override
-	public MemberVO viewMember() {
-		// TODO Auto-generated method stub
-		return null;
+	public MemberVO viewMember(String userId) {
+		
+		return memberDao.viewMember(userId);
 	}
 
 	@Override

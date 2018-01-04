@@ -23,23 +23,22 @@ public class MemberDAOImpl implements MemberDAO {
 	// try catch문, finally문, 객체를 close할 필요가 없어졌다.
 	SqlSession sqlSession;
 	
-	// 회원 목록
+	// 01. 전체 회원 목록 조회
 	@Override
 	public List<MemberVO> memberList() {
 		
 		return sqlSession.selectList("member.memberList");
 	}
-
+	// 02. 회원 등록
 	@Override
 	public void insertMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("member.insertMember", vo);
 	}
-
+	
+	// 03. 회원 정보 상세 조회
 	@Override
-	public MemberVO viewMember() {
-		// TODO Auto-generated method stub
-		return null;
+	public MemberVO viewMember(String userId) {
+		return sqlSession.selectOne("member.viewMember", userId);
 	}
 
 	@Override
